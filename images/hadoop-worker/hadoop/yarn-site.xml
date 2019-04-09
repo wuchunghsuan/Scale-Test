@@ -61,15 +61,15 @@
 	</property>
 	<property>
 		<name>yarn.nodemanager.local-dirs</name>
-		<value>/home/wuchunghsuan/dir/nodemanager/tmp</value>
+		<value>/expose/nodemanager/tmp</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.log-dirs</name>
-		<value>/home/wuchunghsuan/log/nodemanager</value>
+		<value>/expose/log/nodemanager</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.remote-app-log-dir</name>
-		<value>/home/wuchunghsuan/dir/remote-app-log</value>
+		<value>/expose/remote-app-log</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.localizer.address</name>
