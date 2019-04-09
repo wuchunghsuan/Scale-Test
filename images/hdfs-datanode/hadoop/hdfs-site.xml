@@ -52,7 +52,7 @@
 	<!-- datanode -->
 	<property>
 		<name>dfs.datanode.data.dir</name>
-		<value>/home/wuchunghsuan/dir/hadoop/datanode</value>
+		<value>/expose/datanode</value>
 	</property>
 	<property>
 		<name>dfs.datanode.address</name>
