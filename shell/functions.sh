@@ -28,7 +28,7 @@ function start_worker() {
 	NAME=$1
 	docker run -itd \
 	--network=net1 \
-	--cpus="2" \
+	--cpus="1" \
 	--name worker-$NAME \
 	--hostname $NAME \
 	--ip $NAME \
