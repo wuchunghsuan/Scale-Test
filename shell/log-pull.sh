@@ -12,8 +12,8 @@ OUTPUT_DIR=/home/wuchunghsuan/log-scale-test
 
 echo -e "${BLUE}Pull log ${RED}$JOB_ID${END}"
 
-mkdir $OUTPUT_FILE
+mkdir $OUTPUT_DIR
 
 for WORKER in ${WORKERS[@]}; do
-	scp -r ${WORKER}:${EXPOSE_DIR}/worker-* .
+	scp -r ${WORKER}:${EXPOSE_DIR}/worker-* ${OUTPUT_DIR}
 done
