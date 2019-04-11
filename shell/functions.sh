@@ -61,11 +61,34 @@ function start_datanode() {
 	wuchunghsuan/hadoop-datanode
 }
 
+function set_wondershaper() {
+	CONTAINER_ID=$1
+	U_LIMIT=$2
+	D_LIMIT=$3
+	echo -e "${BLUE}Limit container ${RED}${CONTAINER_ID}${BLUE} bandwidth with ${RED}${U_LIMIT} Kbps${BLUE} upload limit and ${RED}${D_LIMIT} Kbps${BLUE} download limit.${END}"
+
+	PID=$(docker inspect -f '{{.State.Pid}}' $CONTAINER_ID)
+	ln -sfT /proc/$PID/ns/net /var/run/netns/$CONTAINER_ID
+	ip netns exec $CONTAINER_ID ip link add ifb0 type ifb
+	ip netns exec $CONTAINER_ID ip link set dev ifb0 up
+	ip netns exec $CONTAINER_ID wondershaper -a eth0 -u $U_LIMIT -d $D_LIMIT
+}
+
+function clean_wondershaper() {
+	CONTAINER_ID=$1
+	echo -e "${BLUE}Clean container ${RED}${CONTAINER_ID}${BLUE} bandwidth limit.${END}"
+ 
+	ip netns exec $CONTAINER_ID wondershaper -c -a eth0
+	#ip -all netns delete
+}
+
 function clean_worker() {
 	echo -e "${BLUE}Clean workers.${END}"
 	docker rm -f `docker ps -a | grep worker- | awk '{print $1}'`
+	echo -e "${BLUE}Clean master.${END}"
 	docker rm -f hadoop-master
 	rm -rf /home/wuchunghsuan/expose/worker-*
+	rm -rf /home/wuchunghsuan/expose/hadoop-master
 }
 
 function clean_all() {
