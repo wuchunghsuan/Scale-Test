@@ -34,3 +34,42 @@ function start_worker() {
 	-v /home/wuchunghsuan/expose-conf:/expose/conf \
 	wuchunghsuan/hadoop-worker
 }
+
+function start_namenode() {
+	IP=$1
+
+	docker run -itd \
+	--network=net1 \
+	--name hadoop-namenode \
+	--hostname $IP \
+	--ip $IP \
+	-p 50070:50070 \
+	-v /home/wuchunghsuan/expose/namenode-1:/expose \
+	-v /home/wuchunghsuan/expose-conf:/expose/conf \
+	wuchunghsuan/hadoop-namenode
+}
+
+function start_datanode() {
+	IP=$1
+
+	docker run -itd \
+	--network=net1 \
+	--hostname $IP \
+	--ip $IP \
+	-v /home/wuchunghsuan/expose/datanode-1:/expose \
+	-v /home/wuchunghsuan/expose-conf:/expose/conf \
+	wuchunghsuan/hadoop-datanode
+}
+
+function clean_worker() {
+	echo -e "${BLUE}Clean workers.${END}"
+	docker rm -f `docker ps -a | grep worker- | awk '{print $1}'`
+	docker rm -f hadoop-master
+	rm -rf /home/wuchunghsuan/expose/worker-*
+}
+
+function clean_all() {
+	echo -e "${BLUE}Clean all.${END}"
+	docker rm -f `docker ps -aq`
+	rm -rf /home/wuchunghsuan/expose/*
+}

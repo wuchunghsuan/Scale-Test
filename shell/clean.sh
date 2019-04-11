@@ -1,6 +1,10 @@
 #!/bin/bash
-docker rm -f `docker ps -a | grep worker- | awk '{print $1}'`
-docker rm -f hadoop-master
-rm -rf /home/wuchunghsuan/expose/worker-*
-#docker rm -f `docker ps -aq`
-#rm -rf /home/wuchunghsuan/expose/*
+. ./functions.sh
+
+while getopts 'a' OPT; do
+    case $OPT in
+        a) clean_all; exit 0;;
+    esac
+done
+
+clean_worker
