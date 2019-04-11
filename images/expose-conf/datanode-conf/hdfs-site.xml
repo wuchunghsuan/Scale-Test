@@ -31,23 +31,23 @@
 	</property>
 	<property>
 		<name>dfs.namenode.http-address</name>
-		<value>10.11.0.1:50070</value>
+		<value>10.11.0.201:50070</value>
 	</property>
 	<property>
 		<name>dfs.namenode.secondary.http-address</name>
-		<value>10.11.0.1:50090</value>
+		<value>10.11.0.201:50090</value>
 	</property>
 	<property>
 		<name>dfs.namenode.rpc-bind-host</name>
-		<value>10.11.0.1</value>
+		<value>10.11.0.201</value>
 	</property>
 	<property>
 		<name>dfs.namenode.servicerpc-bind-host</name>
-		<value>10.11.0.1</value>
+		<value>10.11.0.201</value>
 	</property>
 	<property>
 		<name>dfs.namenode.http-bind-host</name>
-		<value>10.11.0.1</value>
+		<value>10.11.0.201</value>
 	</property>
 	<!-- datanode -->
 	<property>

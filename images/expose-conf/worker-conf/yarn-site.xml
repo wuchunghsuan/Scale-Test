@@ -20,33 +20,33 @@
         </property>
 	<property>
                 <name>yarn.scheduler.minimum-allocation-vcores</name>
-                <value>2</value>
+                <value>1</value>
         </property>
 	<property>
 		<name>yarn.resourcemanager.hostname</name>
-		<value>0.0.0.0</value>
+		<value>10.11.0.1</value>
 	</property>
 	<property>
 		<name>yarn.resourcemanager.scheduler.address</name>
-		<value>0.0.0.0:8030</value>
+		<value>10.11.0.1:8030</value>
 	</property>
 
 	<property>
 		<name>yarn.resourcemanager.resource-tracker.address</name>
-		<value>0.0.0.0:8031</value>
+		<value>10.11.0.1:8031</value>
 	</property>
 	<property>
 		<name>yarn.resourcemanager.address</name>
-		<value>0.0.0.0:8032</value>
+		<value>10.11.0.1:8032</value>
 	</property>
 	<property>
 		<name>yarn.resourcemanager.admin.address</name>
-		<value>0.0.0.0:8033</value>
+		<value>10.11.0.1:8033</value>
 	</property>
 
 	<property>
 		<name>yarn.resourcemanager.webapp.address</name>
-		<value>0.0.0.0:8088</value>
+		<value>10.11.0.1:8088</value>
 	</property>
 	<property>
         	<name>yarn.nodemanager.aux-services</name>
@@ -61,15 +61,15 @@
 	</property>
 	<property>
 		<name>yarn.nodemanager.local-dirs</name>
-		<value>/home/wuchunghsuan/dir/nodemanager/tmp</value>
+		<value>/expose/nodemanager/tmp</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.log-dirs</name>
-		<value>/home/wuchunghsuan/log/nodemanager</value>
+		<value>/expose/log/nodemanager</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.remote-app-log-dir</name>
-		<value>/home/wuchunghsuan/dir/remote-app-log</value>
+		<value>/expose/remote-app-log</value>
 	</property>
 	<property>
 		<name>yarn.nodemanager.localizer.address</name>
@@ -81,11 +81,11 @@
 	</property>
 	<property>
                 <name>yarn.nodemanager.resource.memory-mb</name>
-                <value>32768</value>
+                <value>2048</value>
         </property>
 	<property>
                 <name>yarn.nodemanager.resource.cpu-vcores</name>
-                <value>32</value>
+                <value>1</value>
         </property>
 	<property>
 		<name>yarn.nodemanager.vmem-check-enabled</name>
