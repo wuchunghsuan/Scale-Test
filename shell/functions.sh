@@ -19,8 +19,6 @@ function start_master() {
 	-p 8032:8032 \
 	-p 8033:8033 \
 	-p 9000:9000 \
-	-p 50070:50070 \
-	-p 10020:10020 \
 	wuchunghsuan/hadoop-master
 }
 
