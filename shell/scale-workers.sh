@@ -11,3 +11,5 @@ for ((i=${FROM};i<${SIZE};i++)); do
         echo -e "Start ${RED}worker-$NAME${END}"
         start_worker $NAME
 done
+
+./set-wondershaper.sh
