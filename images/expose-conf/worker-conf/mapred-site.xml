@@ -18,8 +18,12 @@
 
 <configuration>
 	<property>
+		<name>mapred.child.java.opts</name>
+		<value>-Xmx2048m</value>
+	</property>
+	<property>
 		<name>mapreduce.reduce.shuffle.memory.limit.percent</name>
-		<value>0.0001</value>
+		<value>0.5</value>
 	</property>
 	<property>
 		<name>mapreduce.job.reduce.slowstart.completedmaps</name>
