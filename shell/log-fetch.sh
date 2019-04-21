@@ -7,8 +7,8 @@ END="\033[0m"
 
 JOB_ID=$1
 EXPOSE_DIR=/home/wuchunghsuan/log-scale-test
-OUTPUT_DIR=/home/wuchunghsuan/report-scale-test
-OUTPUT_FILE=${OUTPUT_DIR}/report-fetch-$JOB_ID
+OUTPUT_DIR=/home/wuchunghsuan/report-scale-test/$JOB_ID
+OUTPUT_FILE=${OUTPUT_DIR}/report_fetch
 
 echo -e "${BLUE}Count phase time ${RED}$JOB_ID${END}"
 
