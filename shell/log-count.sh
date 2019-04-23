@@ -7,8 +7,8 @@ END="\033[0m"
 
 JOB_ID=$1
 EXPOSE_DIR=/home/wuchunghsuan/log-scale-test
-OUTPUT_DIR=/home/wuchunghsuan/report-scale-test
-OUTPUT_FILE=${OUTPUT_DIR}/report_$JOB_ID
+OUTPUT_DIR=/home/wuchunghsuan/report-scale-test/$JOB_ID
+OUTPUT_FILE=${OUTPUT_DIR}/report
 
 echo -e "${BLUE}Count phase time ${RED}$JOB_ID${END}"
 
@@ -27,7 +27,7 @@ for WORKER_DIR in `ls $EXPOSE_DIR | grep worker`; do
                         if [ $TEST ]; then
                         		#Shuffle
                                 TIME=`expr \`cat $LOG_FILE |grep shuffle-stop |awk -F - '{print $2}'\` - \`cat $LOG_FILE |grep shuffle-start |awk -F - '{print $2}'\``
-                                NAME_SIZE=`cat $LOG_FILE |grep task |awk -F - '{print $2}	{print $3}'`
+                                NAME_SIZE=`cat $LOG_FILE |grep task |awk -F - '{print $2"\t"$3}'`
                                 echo "Shuffle	${NAME_SIZE}   ${TIME}" >> $OUTPUT_FILE
                                 #Fetch
 				#for LOG in `cat $LOG_FILE |grep fetch_file`; do
