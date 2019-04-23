@@ -24,9 +24,10 @@ function start_master() {
 
 function start_worker() {
 	NAME=$1
+	CPU_SET=$2
 	docker run -itd \
 	--network=net1 \
-	--cpus="1" \
+	--cpuset-cpus=$CPU_SET \
 	--name worker-$NAME \
 	--hostname $NAME \
 	--ip $NAME \
