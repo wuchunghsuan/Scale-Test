@@ -27,7 +27,7 @@ function start_worker() {
 	CPU_SET=$2
 	docker run -itd \
 	--network=net1 \
-	--cpuset-cpus=$CPU_SET \
+	--cpus="1" \
 	--name worker-$NAME \
 	--hostname $NAME \
 	--ip $NAME \
