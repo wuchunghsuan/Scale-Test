@@ -24,6 +24,7 @@ function start_master() {
 
 function start_worker() {
 	NAME=$1
+	CPU_SET=$2
 	docker run -itd \
 	--network=net1 \
 	--cpus="1" \
@@ -74,6 +75,12 @@ function set_wondershaper() {
 	ip netns exec $CONTAINER_ID wondershaper -a eth0 -u $U_LIMIT -d $D_LIMIT
 }
 
+function clean_all_wondershaper() {
+        for CONTAINER_ID in `docker ps -a | grep worker- | awk '{print $1}'`; do
+                clean_wondershaper $CONTAINER_ID
+        done
+}
+
 function clean_wondershaper() {
 	CONTAINER_ID=$1
 	echo -e "${BLUE}Clean container ${RED}${CONTAINER_ID}${BLUE} bandwidth limit.${END}"
@@ -83,6 +90,7 @@ function clean_wondershaper() {
 }
 
 function clean_worker() {
+	clean_all_wondershaper
 	echo -e "${BLUE}Clean workers.${END}"
 	docker rm -f `docker ps -a | grep worker- | awk '{print $1}'`
 	echo -e "${BLUE}Clean master.${END}"
@@ -92,6 +100,7 @@ function clean_worker() {
 }
 
 function clean_all() {
+	clean_all_wondershaper
 	echo -e "${BLUE}Clean all.${END}"
 	docker rm -f `docker ps -aq`
 	rm -rf /home/wuchunghsuan/expose/*
