@@ -8,7 +8,7 @@ green = '#2E8B57'
 light_blue = '#87CEFA'
 light_green = '#CCFFCC'
 
-f = open('./line_job')
+f = open('./data/line_job.data')
 
 jobs = []
 
@@ -45,12 +45,16 @@ line_map = ax.plot(xs, jobs,
             color=blue, 
             label='Job')
 
-ax.set_xticklabels([32,64,96,128,160,196,224])
+ax.set_xticklabels([0,32,64,96,128,160,196,224])
+ax.set_xlim(left=(xs[0] - 0.5), right=(xs[-1] + 0.5))
 ax.set_ylabel('Job Completion Time /seconds', fontsize=18)
 ax.set_xlabel('Scale', fontsize=18)
 ax.set_ylim(0, 500)
 
 # plot util text
+
+for a,b in zip(xs,jobs):
+    plt.text(a, b+0.5, b, ha='center', va= 'bottom',fontsize=12)
 
 lines = line_map
 labels = [l.get_label() for l in lines]
@@ -59,6 +63,6 @@ ax.legend(lines, labels, loc=1, fontsize=18,
         ncol=3, mode="expand", borderaxespad=0., 
         frameon=False)
 
-plt.savefig("line_job.pdf")
+plt.savefig("./plot/line_job.pdf")
 
 

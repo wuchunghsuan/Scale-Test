@@ -8,7 +8,7 @@ green = '#2E8B57'
 light_blue = '#87CEFA'
 light_green = '#CCFFCC'
 
-f = open('./line_fetch')
+f = open('./data/line_fetch.data')
 
 maps = []
 
@@ -45,12 +45,16 @@ line_map = ax.plot(xs, maps,
             color=blue, 
             label='Rate')
 
-ax.set_xticklabels([32,64,96,128,160,196,224])
+ax.set_xticklabels([0,32,64,96,128,160,196,224])
+ax.set_xlim(left=(xs[0] - 0.5), right=(xs[-1] + 0.5))
 ax.set_ylabel('Fecth Rate /MBps', fontsize=18)
 ax.set_xlabel('Scale', fontsize=18)
 ax.set_ylim(0, 35)
 
 # plot util text
+
+for a,b in zip(xs,maps):
+    plt.text(a, b+0.5, round(b,2), ha='center', va= 'bottom',fontsize=12)
 
 lines = line_map
 labels = [l.get_label() for l in lines]
@@ -59,6 +63,6 @@ ax.legend(lines, labels, loc=1, fontsize=18,
         ncol=3, mode="expand", borderaxespad=0., 
         frameon=False)
 
-plt.savefig("line_fetch.pdf")
+plt.savefig("./plot/line_fetch.pdf")
 
 

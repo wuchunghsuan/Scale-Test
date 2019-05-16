@@ -14,12 +14,14 @@ if len(sys.argv) <= 1 :
     exit ("Lack of Job ID.")
 jobId = sys.argv[1]
 
-dir = "/Users/admin/Downloads/wuchunghsuan/report-scale-test/"
-filename = dir + jobId + "/report_fetch"
+ip="10.11.1"
+
+dir = "/Users/admin/Downloads/wuchunghsuan/report-scale-test-test/"
+filename = dir + jobId + "/report_fetch_" + ip
 # dir = "/Users/admin/Downloads/wuchunghsuan/report-scale-test-2/"
 # filename = dir + "report-fetch-" + jobId
-outputTmp = dir + jobId + "/fetch.tmp"
-outputFig = dir + jobId + "/fetch_distribution.pdf"
+outputTmp = dir + jobId + "/fetch" + ip + ".tmp"
+outputFig = dir + jobId + "/fetch_distribution" + ip + ".pdf"
 # output = dir + jobId + "/fig_fetch_avg_rate.pdf"
 # outputTmp = dir + jobId + "/fetch.tmp"
 # os.mkdir(dir + jobId)

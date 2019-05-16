@@ -14,7 +14,8 @@ if len(sys.argv) <= 1 :
     exit ("Lack of Job ID.")
 jobId = sys.argv[1]
 
-dir = "/home/wuchunghsuan/report-scale-test/"
+dir = "/Users/admin/Downloads/wuchunghsuan/report-scale-test/"
+# filename = dir + "report_" + jobId
 filename = dir + jobId + "/report"
 output = dir + jobId + "/fig_avg_rate.pdf"
 outputTmp = dir + jobId + "/report.tmp"
@@ -24,8 +25,6 @@ outputShuffle = dir + jobId + "/fig_shuffle_avg_time.pdf"
 # outputMap = "./fig_map_avg_time.pdf"
 # outputReduce = "./fig_reduce_avg_time.pdf"
 # outputShuffle = "./fig_shuffle_avg_time.pdf"
-# filename = "./report"
-# outputTmp = "./report.tmp"
 fi = open(filename)
 
 reduces = []
@@ -82,7 +81,7 @@ ax.bar(xs, maps, width,
 ax.set_xticks(np.arange(10) * len(maps) * 2)
 ax.set_xlim(right=(xs[-1] + 20))
 ax.set_xticklabels(np.arange(10) *len(maps)/10)
-ax.set_ylim(top=15)
+ax.set_ylim(top=50)
 ax.set_ylabel('Average Map Time (s)', fontsize=12)
 ax.set_xlabel('Map', fontsize=12)
 
@@ -99,7 +98,7 @@ ax.bar(xs, reduces, width,
 ax.set_xticks(np.arange(10) * len(reduces) * 2)
 ax.set_xlim(right=(xs[-1] + 20))
 ax.set_xticklabels(np.arange(10) *len(reduces)/10)
-ax.set_ylim(top=30)
+ax.set_ylim(top=100)
 ax.set_ylabel('Average Reduce Time (s)', fontsize=12)
 ax.set_xlabel('Reduce', fontsize=12)
 
@@ -116,7 +115,7 @@ ax.bar(xs, s_times, width,
 ax.set_xticks(np.arange(10) * len(s_times) * 2)
 ax.set_xlim(right=(xs[-1] + 20))
 ax.set_xticklabels(np.arange(10) *len(s_times)/10)
-ax.set_ylim(top=15)
+ax.set_ylim(top=150)
 ax.set_ylabel('Average Shuffle Time (s)', fontsize=12)
 ax.set_xlabel('Shuffle', fontsize=12)
 
