@@ -9,6 +9,7 @@ JOB_ID=$1
 EXPOSE_DIR=/home/wuchunghsuan/log-scale-test
 OUTPUT_DIR=/home/wuchunghsuan/report-scale-test/$JOB_ID
 OUTPUT_FILE=${OUTPUT_DIR}/report
+OUTPUT_TIME_FILE=${OUTPUT_DIR}/report_time
 
 echo -e "${BLUE}Count phase time ${RED}$JOB_ID${END}"
 
@@ -25,24 +26,33 @@ for WORKER_DIR in `ls $EXPOSE_DIR | grep worker`; do
 
                         TEST=`cat $LOG_FILE |grep shuffle-start`
                         if [ $TEST ]; then
-                        		#Shuffle
-                                TIME=`expr \`cat $LOG_FILE |grep shuffle-stop |awk -F - '{print $2}'\` - \`cat $LOG_FILE |grep shuffle-start |awk -F - '{print $2}'\``
-                                NAME_SIZE=`cat $LOG_FILE |grep task |awk -F - '{print $2"\t"$3}'`
+                                shuffle_start=`cat $LOG_FILE |grep shuffle-start`
+                                shuffle_stop=`cat $LOG_FILE |grep shuffle-stop`
+                                reduce_start=`cat $LOG_FILE |grep reduce-start`
+                                reduce_stop=`cat $LOG_FILE |grep reduce-stop`
+                                echo ${shuffle_start} >> $OUTPUT_TIME_FILE
+                                echo ${shuffle_stop} >> $OUTPUT_TIME_FILE
+                                echo ${reduce_start} >> $OUTPUT_TIME_FILE
+                                echo ${reduce_stop} >> $OUTPUT_TIME_FILE
+                                task=`cat $LOG_FILE |grep task`
+                        	#Shuffle
+                                TIME=`expr \`echo ${shuffle_stop} | awk -F - '{print $2}'\` - \`echo ${shuffle_start} | awk -F - '{print $2}'\``
+                                NAME_SIZE=`echo $task |awk -F - '{print $2"\t"$3}'`
                                 echo "Shuffle	${NAME_SIZE}   ${TIME}" >> $OUTPUT_FILE
-                                #Fetch
-				#for LOG in `cat $LOG_FILE |grep fetch_file`; do
-                                #	FETCTH=`echo $LOG |awk -F - '{print $2}	{print $3}	{print $4}	{print $5}'`
-                                #	echo "Fetch   ${FETCTH}" >> $OUTPUT_FILE	
-                                #done
                                 #Reduce
-                                TIME=`expr \`cat $LOG_FILE |grep reduce-stop |awk -F - '{print $2}'\` - \`cat $LOG_FILE |grep reduce-start |awk -F - '{print $2}'\``
-                                NAME=`cat $LOG_FILE |grep reduce-stop |awk -F - '{print $3}'`
+                                TIME=`expr \`echo ${reduce_stop} |awk -F - '{print $2}'\` - \`echo ${reduce_start} |awk -F - '{print $2}'\``
+                                NAME=`echo ${reduce_stop} |awk -F - '{print $3}'`
                                 echo "Reduce    ${NAME}   ${TIME}" >> $OUTPUT_FILE
                         fi
                         TEST=`cat $LOG_FILE |grep map-start`
                         if [ $TEST ]; then
-                                TIME=`expr \`cat $LOG_FILE |grep map-stop |awk -F - '{print $2}'\` - \`cat $LOG_FILE |grep map-start |awk -F - '{print $2}'\``
-                                NAME=`cat $LOG_FILE |grep map-stop |awk -F - '{print $3}'`
+                                map_start=`cat $LOG_FILE |grep map-start`
+                                map_stop=`cat $LOG_FILE |grep map-stop`
+                                echo ${map_start} >> $OUTPUT_TIME_FILE
+                                echo ${map_stop} >> $OUTPUT_TIME_FILE
+                                #Map
+                                TIME=`expr \`echo ${map_stop} | awk -F - '{print $2}'\` - \`echo ${map_start} | awk -F - '{print $2}'\``
+                                NAME=`echo ${map_stop} | awk -F - '{print $3}'`
                                 echo "Map       ${NAME}   ${TIME}" >> $OUTPUT_FILE
                         fi
 
