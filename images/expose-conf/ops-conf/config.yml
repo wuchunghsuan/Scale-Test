@@ -1,0 +1,14 @@
+ops:
+  master:
+    hostname: "10.11.0.1"
+    port_grpc: 14010
+  worker:
+    localDir: "/home/root/tmp_OPS/"
+    port_grpc: 14020
+    port_hadoop_grpc: 14030
+
+etcd:
+  endpoints:
+    - "http://10.11.0.101:2379"
+    - "http://10.11.0.102:2379"
+    - "http://10.11.0.103:2379"
