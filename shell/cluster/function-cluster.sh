@@ -12,6 +12,13 @@ function do_ssh() {
 	ssh $host "$cmd"
 }
 
+function do_scp() {
+	host=$1
+	from=$2
+	to=$3
+	scp $from ${host}:${to}
+}
+
 function gitpull_cluster() {
         host=$1
         cmd="cd /home/wuchunghsuan/github/Scale-Test/shell/; git pull"
@@ -54,4 +61,14 @@ function worker_scale() {
 	num=$3
         cmd="cd $ST_PATH; ./scale-workers.sh $from $num"
         do_ssh $host "$cmd"
+}
+
+function distribute_image() {
+	host=$1
+	dir="/home/wuchunghsuan"
+	name=$2
+	file="${dir}/${name}"
+	cmd="docker load<${file}"
+	do_scp $host $file $dir
+	do_ssh $host "$cmd"
 }
