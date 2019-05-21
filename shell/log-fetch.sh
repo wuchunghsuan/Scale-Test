@@ -27,7 +27,7 @@ for WORKER_DIR in `ls $EXPOSE_DIR | grep worker`; do
                         if [ $TEST ]; then
                                 #Fetch
 				for LOG in `cat $LOG_FILE |grep fetch_file`; do
-                                	FETCTH=`echo $LOG |awk -F - '{print $2"\t"$3"\t"$4"\t"$5}'`
+                                	FETCTH=`echo $LOG |awk -F - '{print $2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7}'`
                                 	echo "Fetch   ${FETCTH}" >> $OUTPUT_FILE	
                                 done
                         fi
