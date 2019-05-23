@@ -46,7 +46,7 @@ function clean_yarn_cluster() {
 
 function clean_etcd_cluster() {
         host=$1
-        cmd="cd /home/wuchunghsuan/github/Scale-Test/shell/; ./clean-etcd.sh"
+        cmd="rm -rf /home/wuchunghsuan/etcd; cd /home/wuchunghsuan/github/Scale-Test/shell/; ./clean-etcd.sh"
         do_ssh $host "$cmd"
 }
 
@@ -65,6 +65,20 @@ function start_datanode() {
 function start_resourcemanager() {
         host=$1
         cmd="cd $ST_PATH; ./master-start.sh"
+        do_ssh $host "$cmd"
+}
+
+function start_ops_master() {
+        host=$1
+        cmd="cd $ST_PATH; ./ops-master-start.sh"
+        do_ssh $host "$cmd"
+}
+
+function ops_worker_scale() {
+        host=$1
+        from=$2
+        num=$3
+        cmd="cd $ST_PATH; ./ops-scale-workers.sh $from $num"
         do_ssh $host "$cmd"
 }
 
