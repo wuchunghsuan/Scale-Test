@@ -16,8 +16,15 @@ function do_scp() {
 	host=$1
 	from=$2
 	to=$3
+	echo "scp $from ${host}:${to}"
 	scp $from ${host}:${to}
 }
+
+function sync_date() {
+	host=$1
+	cmd="ntpdate -u ntp.api.bz"
+	do_ssh $host "$cmd"
+} 
 
 function gitpull_cluster() {
         host=$1
@@ -67,7 +74,7 @@ function distribute_image() {
 	host=$1
 	dir="/home/wuchunghsuan"
 	name=$2
-	file="${dir}/${name}"
+	file="${dir}/${name}.tar"
 	cmd="docker load<${file}"
 	do_scp $host $file $dir
 	do_ssh $host "$cmd"
