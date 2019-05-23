@@ -44,6 +44,12 @@ function clean_yarn_cluster() {
         do_ssh $host "$cmd"
 }
 
+function clean_etcd_cluster() {
+        host=$1
+        cmd="cd /home/wuchunghsuan/github/Scale-Test/shell/; ./clean-etcd.sh"
+        do_ssh $host "$cmd"
+}
+
 function start_namenode() {
 	host=$1
 	cmd="cd $ST_PATH; ./namenode-start.sh"
