@@ -133,6 +133,7 @@ function clean_worker() {
 	docker rm -f `docker ps -a | grep worker- | awk '{print $1}'`
 	echo -e "${BLUE}Clean master.${END}"
 	docker rm -f hadoop-master
+	docker rm -f hadoop-master-ops
 	rm -rf /home/wuchunghsuan/expose/worker-*
 	rm -rf /home/wuchunghsuan/expose/hadoop-master
 }
