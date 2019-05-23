@@ -89,6 +89,11 @@ function clean_wondershaper() {
 	#ip -all netns delete
 }
 
+function clean_etcd() {
+	echo -e "${BLUE}Clean etcd.${END}"
+        docker rm -f `docker ps -a | grep etcd | awk '{print $1}'`
+}
+
 function clean_worker() {
 	clean_all_wondershaper
 	echo -e "${BLUE}Clean workers.${END}"
