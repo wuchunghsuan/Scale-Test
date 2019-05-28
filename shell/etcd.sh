@@ -7,10 +7,17 @@ CLUSTER_STATE=new
 NAME_1=etcd-node-0
 NAME_2=etcd-node-1
 NAME_3=etcd-node-2
+NAME_4=etcd-node-3
+NAME_5=etcd-node-4
+NAME_6=etcd-node-5
 HOST_1=10.11.0.101
 HOST_2=10.11.0.102
 HOST_3=10.11.0.103
-CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380
+HOST_4=10.11.0.104
+HOST_5=10.11.0.105
+HOST_6=10.11.0.106
+CLUSTER=${NAME_1}=http://${HOST_1}:2380,${NAME_2}=http://${HOST_2}:2380,${NAME_3}=http://${HOST_3}:2380,${NAME_4}=http://${HOST_4}:2380,${NAME_5}=http://${HOST_5}:2380,${NAME_6}=http://${HOST_6}:2380
+
 DATA_DIR=/home/wuchunghsuan/etcd
 
 THIS_NAME=${NAME_1}
