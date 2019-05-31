@@ -37,21 +37,21 @@ count = 0
 
 for line in fi:
     args = line.split()
-    if len(args) == 0 or int(args[1]) < 10:
+    if len(args) == 0 or float(args[5]) > 100:
         continue
-    times.append(float(args[1]))
-    sizes.append(float(args[2]))
-    if float(args[3]) < 1:
-        rates0.append(float(args[3]))
-    elif float(args[3]) < 10:
-        rates1.append(float(args[3]))
-    elif float(args[3]) < 20:
-        rates2.append(float(args[3]))
-    elif float(args[3]) < 30:
-        rates3.append(float(args[3]))
+    times.append(float(args[2]))
+    sizes.append(float(args[4]))
+    if float(args[5]) < 1:
+        rates0.append(float(args[5]))
+    elif float(args[5]) < 10:
+        rates1.append(float(args[5]))
+    elif float(args[5]) < 20:
+        rates2.append(float(args[5]))
+    elif float(args[5]) < 30:
+        rates3.append(float(args[5]))
     else:
-        rates4.append(float(args[3]))
-    rates.append(float(args[3]))
+        rates4.append(float(args[5]))
+    rates.append(float(args[5]))
     count += 1
 
 fi.close()

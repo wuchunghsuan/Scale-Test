@@ -82,7 +82,7 @@ ax.set_xticklabels([0,32,64,96,128,160,196,224])
 ax.set_xlim(left=(xs[0] - 0.5), right=(xs[-1] + 0.5))
 ax.set_ylabel('Average Time /seconds', fontsize=18)
 ax.set_xlabel('Scale', fontsize=18)
-ax.set_ylim(0, 100)
+ax.set_ylim(0, 150)
 
 # plot util text
 
