@@ -1,0 +1,33 @@
+Configuration:
+  status: warn
+  name: OPS
+  properties:
+    property:
+      name: filename
+      value: logs/ops.log
+  appenders:
+    Console:
+      name: STDOUT
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d %highlight{%-5level}{STYLE=Logback} %style{%pid}{default,green} %style{[%15.15t]}{default,red} %style{%-40.40C{1.}}{default,blue} %style{: %msg%n%throwable}{default}"
+    File:
+      name: File
+      fileName: ${filename}
+      PatternLayout:
+        Pattern: "%d %p %C{1.} [%t] %m%n"
+      Filters:
+        ThresholdFilter:
+          level: debug
+  Loggers:
+    logger:
+      - name: cn.edu.sjtu.ist.ops
+        level: debug
+        additivity: false
+        AppenderRef:
+          - ref: STDOUT
+          - ref: File
+    Root:
+      level: error
+      AppenderRef:
+        - ref: STDOUT
