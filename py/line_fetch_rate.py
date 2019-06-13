@@ -27,11 +27,14 @@ for line in fi:
     if len(args) == 0 or float(args[5]) > 100:
         continue
     time = int(args[3]) / 1000
-    size = int(args[4]) / 1000
-    if not size_dict.has_key(time):
-        size_dict[time] = size
-    else:
-        size_dict[time] = size_dict[time] + size
+    duration = int(args[2]) / 1000
+    if duration == 0:
+        duration = 1
+    size = int(args[4]) / 1000000 / duration
+    for i in range(duration):
+        if not size_dict.has_key(time - i):
+            size_dict[time - i] = size
+        size_dict[time - i] = size_dict[time - i] + size
 
 fi.close()
 
@@ -45,7 +48,6 @@ sizes = np.asarray(sizes)
 print (sizes)
 
 fig, ax = plt.subplots(figsize=(12,5))
-width = 8
 
 xs = np.arange(len(sizes))
 
@@ -57,7 +59,7 @@ line_map = ax.plot(xs, sizes,
 
 # ax.set_xticklabels([0,32,64,96,128,160,196,224])
 ax.set_xlim(left=(xs[0] - 0.5), right=(xs[-1] + 0.5))
-ax.set_ylabel('Transfer data size /KB', fontsize=18)
+ax.set_ylabel('Transfer data size /MB', fontsize=18)
 ax.set_xlabel('Time /seconds', fontsize=18)
 # ax.set_ylim(0, 500)
 
