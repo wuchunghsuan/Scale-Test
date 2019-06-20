@@ -27,32 +27,29 @@ function draw_job_time() {
 function draw_task_time() {
 	JOB_ID=$1
 	echo "python task_time.py ${JOB_ID}"
-	python task_time.py $JOB_ID
+	python task_time.py $JOB_ID $2
 }
 
 IDS=(
-application_1559641550938_0001
-application_1559641550938_0002
-application_1559641550938_0003
-application_1559641550938_0004
+
 )
 
-for ID in ${IDS[@]}; do
-	draw_average $ID
-done
+# for ID in ${IDS[@]}; do
+# 	draw_average $ID
+# done
+
+# for ID in ${IDS[@]}; do
+# 	draw_fetch $ID
+# done
+
+# for ID in ${IDS[@]}; do
+# 	draw_fetch_rate $ID
+# done
+
+# for ID in ${IDS[@]}; do
+# 	draw_job_time $ID
+# done
 
 for ID in ${IDS[@]}; do
-	draw_fetch $ID
-done
-
-for ID in ${IDS[@]}; do
-	draw_fetch_rate $ID
-done
-
-for ID in ${IDS[@]}; do
-	draw_job_time $ID
-done
-
-for ID in ${IDS[@]}; do
-	draw_task_time $ID
+	draw_task_time $ID 8
 done
