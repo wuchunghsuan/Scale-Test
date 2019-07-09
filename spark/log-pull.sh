@@ -6,7 +6,15 @@ BLUE="\033[34m"
 END="\033[0m"
 
 JOB_ID=$1
-WORKERS=(192.168.2.11 192.168.2.12)
+WORKERS=(
+192.168.2.11
+192.168.2.12
+192.168.2.13
+192.168.2.14
+192.168.2.15
+192.168.2.16
+)
+
 LOG_DIR=/home/wuchunghsuan/log/nodemanager
 OUTPUT_DIR=./spark
 

@@ -8,3 +8,6 @@ py/data/line_fetch.data
 py/data/line_job.data
 py/plot/line_fetch.pdf
 py/plot/line_job.pdf
+*.log
+stdout
+*.pdf
