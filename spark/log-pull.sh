@@ -8,13 +8,13 @@ END="\033[0m"
 JOB_ID=$1
 WORKERS=(192.168.2.11 192.168.2.12)
 LOG_DIR=/home/wuchunghsuan/log/nodemanager
-OUTPUT_DIR=./log
+OUTPUT_DIR=./spark
 
 echo -e "${BLUE}Pull log ${RED}$JOB_ID${END}"
 
-mkdir $OUTPUT_DIR
+mkdir -p $OUTPUT_DIR/${JOB_ID}
 
 for WORKER in ${WORKERS[@]}; do
-	echo -e "${BLUE}Collect OPS log from ${RED}${WORKER}${GREEN}:${LOG_DIR}${BLUE}"
-	ssh ${WORKER} "cat ${LOG_DIR}/${JOB_ID}/container_*/stdout | grep OPS >> ${OUTPUT_DIR}/${JOB_ID}/spark.log"
+	echo -e "${BLUE}Collect OPS log from ${RED}${WORKER}${GREEN}:${LOG_DIR}${END}"
+	ssh ${WORKER} "cat ${LOG_DIR}/${JOB_ID}/container_*/stdout | grep OPS" >> ${OUTPUT_DIR}/${JOB_ID}/spark.log
 done
