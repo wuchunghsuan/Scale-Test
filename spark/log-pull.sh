@@ -13,6 +13,7 @@ WORKERS=(
 192.168.2.14
 192.168.2.15
 192.168.2.16
+192.168.2.17
 )
 
 LOG_DIR=/home/wuchunghsuan/log/nodemanager
@@ -24,5 +25,5 @@ mkdir -p $OUTPUT_DIR/${JOB_ID}
 
 for WORKER in ${WORKERS[@]}; do
 	echo -e "${BLUE}Collect OPS log from ${RED}${WORKER}${GREEN}:${LOG_DIR}${END}"
-	ssh ${WORKER} "cat ${LOG_DIR}/${JOB_ID}/container_*/stdout | grep OPS" >> ${OUTPUT_DIR}/${JOB_ID}/spark.log
+	ssh ${WORKER} "cat ${LOG_DIR}/${JOB_ID}/container_*/stdout | grep [OPS]" >> ${OUTPUT_DIR}/${JOB_ID}/spark.log
 done
