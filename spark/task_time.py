@@ -94,8 +94,22 @@ def compute(stageNum):
 
     fi.close()
     if taskType == 1:
+        tmp = np.asarray(mapSortBar)
+        tmpMean = np.mean(tmp)
+        newSortBar = []
+        for bar in mapSortBar:
+            if bar < tmpMean * 2:
+                newSortBar.append(bar)
+        sort = np.asarray(newSortBar)
+        print("Map sort time: " + str(np.mean(sort)) + " s")
         return ("Map", mapBar, mapGap, mapSortBar, mapSortGap)
     elif taskType == 2:
+        copy = np.asarray(copyBar)
+        sort = np.asarray(reduceSortBar)
+        red = np.asarray(reduceBar)
+        print ("Copy time: " + str(np.mean(copy)) + " s")
+        print ("Sort time: " + str(np.mean(sort)) + " s")
+        print ("Reduce time: " + str(np.mean(red)) + " s")
         return ("Reduce", copyGap, copyBar, reduceSortGap, reduceSortBar, reduceGap, reduceBar)
     
     return ()
@@ -129,9 +143,6 @@ def draw(data, ax):
         reduceSortBar = data[4]
         reduceGap = data[5]
         reduceBar = data[6]
-        print(copyBar)
-        print(reduceSortBar)
-        print(reduceBar)
         global rounds
 
         width = 1

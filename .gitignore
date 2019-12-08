@@ -11,3 +11,4 @@ py/plot/line_job.pdf
 *.log
 stdout
 *.pdf
+spark/spark/
